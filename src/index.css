@@ -1,0 +1,71 @@
+/* src/index.css */
+
+/* Custom CSS Variables for Dopamine Design Palette */
+:root {
+  --color-dark-bg: #0A0A0A; /* Deep Black */
+  --color-dark-surface: #1A1A1A; /* Slightly lighter black for cards/elements */
+  --color-dark-border: #333333; /* Dark border for subtle separation */
+
+  --color-neon-cyan: #00FFFF; /* Primary Neon Accent */
+  --color-neon-magenta: #FF00FF; /* Secondary Neon Accent */
+  --color-neon-lime: #00FF00; /* Tertiary Neon Accent */
+  --color-neon-yellow: #FFEA00; /* Quaternary Neon Accent */
+
+  --color-text-light: #E0E0E0; /* Light text on dark background */
+  --color-text-muted: #888888; /* Muted text for less important info */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Apply base font and background */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-dark-bg); /* Use custom variable */
+  color: var(--color-text-light); /* Use custom variable */
+}
+
+/* Custom utility classes for colors using CSS variables */
+.bg-dark-bg { background-color: var(--color-dark-bg); }
+.bg-dark-surface { background-color: var(--color-dark-surface); }
+.border-dark-border { border-color: var(--color-dark-border); }
+
+.text-neon-cyan { color: var(--color-neon-cyan); }
+.text-neon-magenta { color: var(--color-neon-magenta); }
+.text-neon-lime { color: var(--color-neon-lime); }
+.text-neon-yellow { color: var(--color-neon-yellow); }
+
+.bg-neon-cyan { background-color: var(--color-neon-cyan); }
+.bg-neon-magenta { background-color: var(--color-neon-magenta); }
+.bg-neon-lime { background-color: var(--color-neon-lime); }
+.bg-neon-yellow { background-color: var(--color-neon-yellow); }
+
+/* Add some glow effects for neon elements */
+.glow-text-cyan { text-shadow: 0 0 5px var(--color-neon-cyan), 0 0 10px var(--color-neon-cyan), 0 0 15px var(--color-neon-cyan); }
+.glow-button-cyan { box-shadow: 0 0 10px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan) inset; }
+.glow-border-cyan { box-shadow: 0 0 8px var(--color-neon-cyan); }
+
+/* Custom Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-dark-bg); /* Color of the scrollbar track */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-dark-border); /* Color of the scrollbar thumb */
+  border-radius: 10px;
+  border: 2px solid var(--color-dark-bg); /* Padding around thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text-muted); /* Color on hover */
+}
+
+
+
+
