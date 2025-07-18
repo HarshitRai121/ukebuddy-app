@@ -6,6 +6,7 @@ import { useFirebase } from '../../hooks/useFirebase'; // To access addPracticeM
 /**
  * PracticeTimer component: Allows users to start, stop, and reset a timer
  * to track their practice sessions. Logs minutes to user profile on stop.
+ * Designed to be simple, visually appealing, and mobile-responsive.
  */
 function PracticeTimer() {
   const { addPracticeMinutes } = useFirebase(); // Get the function to log minutes
@@ -73,7 +74,7 @@ function PracticeTimer() {
   }, []);
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-[calc(100vh-12rem)] flex flex-col items-center">
+    <div className="container mx-auto p-4 md:p-8 min-h-[calc(100vh-12rem)] flex flex-col items-center justify-center">
       <div className="bg-dark-surface rounded-xl shadow-2xl p-6 md:p-8 border border-dark-border w-full max-w-md flex flex-col items-center relative overflow-hidden">
         {/* Background gradient pulsate for active timer */}
         {isRunning && (
@@ -88,20 +89,26 @@ function PracticeTimer() {
 
         {/* Dynamic Clock Icon */}
         <Clock className={`w-20 h-20 mb-6 z-10 transition-colors duration-500
-                          ${isRunning ? 'text-neon-lime animate-spin-slow' : 'text-neon-yellow'}`} />
+                           ${isRunning ? 'text-neon-lime animate-spin-slow' : 'text-neon-yellow'}`} />
 
-        {/* Timer Display */}
-        <div className={`text-7xl font-extrabold text-neon-lime mb-8 drop-shadow-lg z-10
-                         ${isRunning ? 'animate-pulse-subtle' : 'animate-fade-in'}`}>
-          {formatTime(elapsedTime)}
+        {/* Timer Display with Cool Hover Effect */}
+        <div className="relative z-10 group"> {/* Added group for hover effect */}
+          <div className={`text-7xl font-extrabold text-neon-lime mb-8 drop-shadow-lg
+                           ${isRunning ? 'animate-pulse-subtle' : 'animate-fade-in'}
+                           group-hover:scale-105 group-hover:text-neon-yellow transition-all duration-300`}> {/* Added hover effects */}
+            {formatTime(elapsedTime)}
+          </div>
+          {/* Optional: Add a subtle glow on hover */}
+          <div className="absolute inset-0 bg-neon-lime opacity-0 group-hover:opacity-20 blur-sm rounded-lg transition-opacity duration-300"></div>
         </div>
 
-        {/* Control Buttons */}
-        <div className="flex space-x-4 z-10">
+
+        {/* Control Buttons - Mobile Responsive Layout */}
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 z-10 w-full justify-center"> {/* MODIFIED for responsiveness */}
           {!isRunning ? (
             <button
               onClick={startTimer}
-              className="px-8 py-4 text-xl font-bold rounded-full bg-gradient-to-r from-neon-lime to-neon-cyan text-dark-bg uppercase tracking-wide
+              className="w-full sm:w-auto px-6 py-3 text-lg sm:px-8 sm:py-4 sm:text-xl font-bold rounded-full bg-gradient-to-r from-neon-lime to-neon-cyan text-dark-bg uppercase tracking-wide
                          shadow-lg hover:shadow-neon-lime/70 transition-all duration-300 transform hover:scale-105 active:scale-95
                          focus:outline-none focus:ring-4 focus:ring-neon-lime focus:ring-opacity-75 animate-cta-pulse"
             >
@@ -111,7 +118,7 @@ function PracticeTimer() {
             <>
               <button
                 onClick={stopTimer}
-                className="px-8 py-4 text-xl font-bold rounded-full bg-gradient-to-r from-neon-magenta to-neon-purple text-dark-bg uppercase tracking-wide
+                className="w-full sm:w-auto px-6 py-3 text-lg sm:px-8 sm:py-4 sm:text-xl font-bold rounded-full bg-gradient-to-r from-neon-magenta to-neon-purple text-dark-bg uppercase tracking-wide
                            shadow-lg hover:shadow-neon-magenta/70 transition-all duration-300 transform hover:scale-105 active:scale-95
                            focus:outline-none focus:ring-4 focus:ring-neon-magenta focus:ring-opacity-75"
               >
@@ -119,7 +126,7 @@ function PracticeTimer() {
               </button>
               <button
                 onClick={resetTimer}
-                className="px-8 py-4 text-xl font-bold rounded-full bg-dark-border text-text-light uppercase tracking-wide
+                className="w-full sm:w-auto px-6 py-3 text-lg sm:px-8 sm:py-4 sm:text-xl font-bold rounded-full bg-dark-border text-text-light uppercase tracking-wide
                            shadow-lg hover:bg-dark-border/80 transition-all duration-300 transform hover:scale-105 active:scale-95
                            focus:outline-none focus:ring-4 focus:ring-text-muted focus:ring-opacity-75"
               >
